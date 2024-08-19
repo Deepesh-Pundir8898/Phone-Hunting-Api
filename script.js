@@ -8,6 +8,7 @@ const modalImage = document.getElementById("modalImage");
 const modalDescription = document.getElementById("modalDescription");
 const modalSlug = document.getElementById("modalSlug");
 const closeBtn = document.querySelector(".close");
+const modelContent = document.querySelector(".modal-content")
 
 searchBtn.addEventListener("click", () => {
     const searchValue = input.value.trim();
@@ -29,7 +30,7 @@ async function searchProduct(value = 'iphone') {
 
 function createElement(phones) {
     phones.forEach(phone => {
-        console.log(phone);
+        // console.log(phone);
         const phoneCard = document.createElement('div');
         phoneCard.classList = `card`;
         phoneCard.innerHTML = `
@@ -70,7 +71,8 @@ function showDetailsHandler(name, image, slug , brand) {
     modalDescription.innerText = `Brand : ${brand}
 
         Storage: 64GB storage, microSDXC
-displaySize: 6.5 inches, 102.0 cm2 (~81.1% screen-to-body ratio)
+
+    displaySize: 6.5 inches, 102.0 cm2 (~81.1% screen-to-body ratio)
     `;
 
     modal.style.display = "flex";
@@ -78,7 +80,11 @@ displaySize: 6.5 inches, 102.0 cm2 (~81.1% screen-to-body ratio)
 }
 
 closeBtn.onclick = function() {
-    modal.style.display = "none";
+    modelContent.classList.add("popdown");
+    setTimeout(()=>{
+        modelContent.classList.remove("popdown");
+        modal.style.display="none";
+    },1000)
     document.body.classList.remove("no-scroll");
 }
 
